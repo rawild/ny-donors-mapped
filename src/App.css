@@ -114,19 +114,19 @@ ol, ul {
 
 .mi-3 {
   color: #fffff0;
-  background-color: #238b45;
+  background-color: #41ab5d;
   font-weight: bold;
 }
 
 .mi-4 {
   color: #fffff0;
-  background-color: #41ab5d;
+  background-color: #74c476;
   font-weight: bold;
 }
 
 .mi-5 {
-  color: #fffff0;
-  background-color: #74c476; 
+  color: #505050;
+  background-color: #c7e9c0; 
   font-weight: bold;
 
 }
@@ -138,25 +138,25 @@ ol, ul {
 
 .td-2 {
   color: #fffff0;
-  background-color: #a50f15;
+  background-color: #cb181d;
   font-weight: bold;
 }
 
 .td-3 {
   color: #fffff0;
-  background-color: #cb181d;
+  background-color: #fb6a4a;
   font-weight: bold;
 }
 
 .td-4 {
-  color: #fffff0;
-  background-color: #ef3b2c;
+  color: #505050;
+  background-color: #fcbba1;
   font-weight: bold;
 }
 
 .td-5 {
-  color: #fffff0;
-  background-color: #fb6a4a; 
+  color: #505050;
+  background-color: #fee0d2; 
   font-weight: bold;
 }
 
@@ -168,31 +168,31 @@ ol, ul {
 
 .dpp-2 {
   color: #fffff0;
-  background-color: #b64708;
+  background-color: #d95f0e;
   font-weight: bold;
 }
 
 .dpp-3 {
   color: #fffff0;
-  background-color: #d56012;
+  background-color: #fe9929;
   font-weight: bold;
 }
 
 .dpp-4 {
-  color: #fffff0;
-  background-color: #eb7e1e;
+  color: #505050;
+  background-color: #fed98e;
   font-weight: bold;
 }
 
 .dpp-5 {
-  color: #fffff0;
-  background-color: #fe9929; 
+  color: #505050;
+  background-color: #ffefb5; 
   font-weight: bold;
 }
 
 .map1-tooltip {
   text-align: left;
-  width: 250px;
+  width: 180px;
   opacity: 1;
 }
 
@@ -212,4 +212,23 @@ ol, ul {
 .leaflet-control{
   text-align: left;
   padding-left:5px;
+}
+
+.map-legend{
+  width: 190px;
+  text-align: left;
+}
+.legend-entry{
+  display: inline-flex;
+  font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.legend-box{
+  height: 20px;
+  width: 20px;
+  margin-right: 40px
+}
+
+.map-controls{
+  display: inline-flex;
 }

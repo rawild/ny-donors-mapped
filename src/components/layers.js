@@ -2,15 +2,16 @@ import React from 'react'
 import { LayersControl, GeoJSON } from 'react-leaflet'
 import census_tracts from '../data/ny_tract_sum_count_inc_pop'
 import {format} from 'd3-format'
+import {colors} from '../style/colors.js'
 
 function getTotalDonatedStyle(f){
     let getColor = (d) => {
-        let colors = ['#dcd6d6','#67000d','#d42020','#fc7050','#fdbea5','#fff5f0']
-        let color = d === 0 ? colors[0] :
-        (d > 79884) ? colors[1] :
-        (d > 35090) ? colors[2] : 
-        (d > 16650)  ? colors[3] : 
-        (d > 6946)  ? colors[4] : colors[5];
+        let colorsarray = [colors.grey,colors.red5,colors.red4,colors.red3,colors.red2,colors.red1]
+        let color = d === 0 ? colorsarray[0] :
+        (d > 79884) ? colorsarray[1] :
+        (d > 35090) ? colorsarray[2] : 
+        (d > 16650)  ? colorsarray[3] : 
+        (d > 6946)  ? colorsarray[4] : colorsarray[5];
      return color
     }
     return {
@@ -24,12 +25,12 @@ function getTotalDonatedStyle(f){
 
 function getMedianIncomeStyle(f){
     let getColor = (d) => {
-        let colors = ['#dcd6d6','#00441b','#006d2c','#238b45','#41ab5d','#74c476']
-        let color = d === 0 ? colors[0] :
-        (d > 99342) ? colors[1] :
-        (d > 75757) ? colors[2] : 
-        (d > 59341)  ? colors[3] : 
-        (d > 44112)  ? colors[4] : colors[5];
+        let colorsarray = [colors.grey, colors.green5, colors.green4, colors.green3, colors.green2, colors.green1]
+        let color = d === 0 ? colorsarray[0] :
+        (d > 99342) ? colorsarray[1] :
+        (d > 75757) ? colorsarray[2] : 
+        (d > 59341)  ? colorsarray[3] : 
+        (d > 44112)  ? colorsarray[4] : colorsarray[5];
      return color
     }
     return {
@@ -43,16 +44,16 @@ function getMedianIncomeStyle(f){
 
 function getPerPersonStyle(f){
     let getColor = (d) => {
-        let colors = ['#dcd6d6','#993404','#b64708','#d56012','#eb7e1e','#fe9929']
-        let color = d === 0 ? colors[0] :
-        (d > 99342) ? colors[1] :
-        (d > 75757) ? colors[2] : 
-        (d > 59341)  ? colors[3] : 
-        (d > 44112)  ? colors[4] : colors[5];
+        let colorsarray = [colors.grey, colors.orange5, colors.orange4, colors.orange3, colors.orange2, colors.orange1]
+        let color = d === 0 ? colorsarray[0] :
+        (d > 19.95) ? colorsarray[1] :
+        (d > 9.75) ? colorsarray[2] : 
+        (d > 4.87)  ? colorsarray[3] : 
+        (d > 2.24)  ? colorsarray[4] : colorsarray[5];
      return color
     }
     return {
-        fillColor: getColor(f.properties.median_inc),
+        fillColor: getColor(f.properties.total_donated/f.properties.S0101_C01_001E),
         weight: 1,
         opacity: 1,
         fillOpacity: 0.7,
@@ -87,14 +88,14 @@ function getDonatedPerPersonClass(DonatedPerPerson) {
 const getToolTips = (feature,layer) => {
     let totalDonated = feature.properties.total_donated
     let medianIncome = feature.properties.median_inc
-    let DonatedPerPerson = feature.properties.total_donated / (feature.properties.S0101_C01_001E)
+    let DonatedPerPerson = feature.properties.S0101_C01_001E >0?feature.properties.total_donated / (feature.properties.S0101_C01_001E):0
     layer.bindTooltip(`<div class='map1-tooltip'>
             <div class=${getTotalDonatedClass(totalDonated)}><p class='tooltip-header'>Total Donated:</p>
             <p class='tooltip-text'>${format("$,")(totalDonated)}</p></div>
             <div class=${getDonatedPerPersonClass(DonatedPerPerson)}>
             <p class='tooltip-header'>Donated Per Person:</p>
-            <p class='tooltip-text'>${format("$,.3r")(DonatedPerPerson)}</p></div>
-            <div class=${getMedianIncomeClass(medianIncome)}> <p class='tooltip-header'>Median Income:</p>
+            <p class='tooltip-text'>${format("$,.2f")(DonatedPerPerson)}</p></div>
+            <div class=${getMedianIncomeClass(medianIncome)}> <p class='tooltip-header'>Median Household Income:</p>
             <p class='tooltip-text'>${format("$,")(medianIncome)}</p></div> `)
 
 }
@@ -113,7 +114,7 @@ const Layers = () => {
             <GeoJSON  data = {census_tracts} style={(f)=>getPerPersonStyle(f)} onEachFeature={getToolTips} >
                 </GeoJSON> 
           </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name="Median Income">
+          <LayersControl.BaseLayer name="Median Household Income">
              <GeoJSON  data = {census_tracts} style={(f)=>getMedianIncomeStyle(f)} onEachFeature={getToolTips} >
                 </GeoJSON> 
           </LayersControl.BaseLayer>

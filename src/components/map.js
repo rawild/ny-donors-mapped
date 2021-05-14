@@ -13,7 +13,6 @@ class Map extends React.Component {
                 />
                 <Layers />
             </MapContainer>
-
             );
     }
 }

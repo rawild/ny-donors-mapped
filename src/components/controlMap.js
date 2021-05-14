@@ -1,5 +1,5 @@
 import React from 'react'
-import { Controls } from './controls.js'
+import { Legends } from './legends.js'
 import { Map } from './map.js'
 
 class ControlMap extends React.Component {
@@ -25,7 +25,7 @@ class ControlMap extends React.Component {
         const colorData= this.state.colorData
         return (
             <div>
-                <Controls onButtonClick={(d)=>this.onButtonClick(d)} />
+                <Legends onButtonClick={(d)=>this.onButtonClick(d)} />
                 <Map key={this.state.key} colorData={colorData} attribution={colorData}/>
             </div>
         )
