@@ -1,5 +1,6 @@
 import './App.css';
-import { ControlMap } from './components/controlMap.js'
+import { LayerMap } from './components/layerMap.js'
+import { DonorMap } from './components/donorMap.js'
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
          NY Political Donors Mapped
         </p>
       </header>
-      <ControlMap />
+      <LayerMap />
+      <DonorMap />
     </div>
   );
 }

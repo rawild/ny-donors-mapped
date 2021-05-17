@@ -90,8 +90,9 @@ ol, ul {
 }
 
 .leaflet-container {
-  width: 100%;
+  width: 90%;
   height: 80vh;
+  margin: auto;
 }
 
 .mi-0 {
@@ -232,3 +233,33 @@ ol, ul {
 .map-controls{
   display: inline-flex;
 }
+
+.flex-wrapper{
+  display: flex;
+}
+
+.donor-map{
+  display: flex;
+  width: 40%;
+  min-width: 300px;
+  height: 80vh;
+}
+
+.donor-table{
+  width: 50%;
+  max-width: 1000px;
+  min-width: 400px;
+  text-align: left;
+}
+
+th,
+    td {
+      margin: 0;
+      padding: 0.5rem;
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
+
+      :last-child {
+        border-right: 0;
+      }
+    }
