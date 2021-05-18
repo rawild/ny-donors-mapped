@@ -282,3 +282,17 @@ th,
   color: #282c34;
   padding: 70px;
 }
+
+.piechart-panel{
+  display: inline;
+  width: 100%;
+}
+
+.left {
+  width: 40%;
+  flex:auto;
+}
+.right {
+  width: 40%;
+  flex:auto;
+}
