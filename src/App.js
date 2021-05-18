@@ -10,14 +10,16 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-         NY Political Donors Mapped
+         Mapping New York Political Donors
         </p>
       </header>
-      <LayerMap />
-      <DonorMap />
       <PieChartPanel />
       <GeocodingPanel />
       <StatesPanel />
+      <LayerMap />
+      <DonorMap />
+      
+     
       
     </div>
   );

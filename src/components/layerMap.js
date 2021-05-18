@@ -26,7 +26,7 @@ class LayerMap extends React.Component {
         const colorData= this.state.colorData
         const layers = <Layers/>
         return (
-            <div>
+            <div className="dark">
                 <div className='section-header'>Individual Political Donations vs Median Income in the Last 5 Years</div>
                 <Legends onButtonClick={(d)=>this.onButtonClick(d)} />
                 <div className='tract-map'>

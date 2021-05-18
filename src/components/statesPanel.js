@@ -39,6 +39,8 @@ class StatesPanel extends React.Component {
         return(
             <div>
                 <div className='section-header'>{'Donors Across the US'}</div>
+                <div className='blurb'>Most of the donations come from New York. The rest are adjacent states or populous states. Notable exceptions 
+                to this include Arkansas, where 239 donors contributed more than $7 million, and the District of Columbia. </div>
                 <div className='flex-wrapper'>
                     <PieChart pieClass='statePie' title={ '84% of Donations Came from New York'} 
                     data={summarydata.StatesDonors} 
