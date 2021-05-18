@@ -21,7 +21,7 @@ function Table({ columns, data }) {
       {
         columns,
         data,
-        initialState: { pageIndex: 0, pageSize: 10, },
+        initialState: { pageIndex: 0, pageSize: 15, },
       },
       useSortBy,usePagination
     )

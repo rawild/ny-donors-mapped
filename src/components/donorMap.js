@@ -1,6 +1,6 @@
 import React from 'react'
 import { Map } from './map.js'
-import { GeoJSON } from 'react-leaflet'
+import { GeoJSON, useMap } from 'react-leaflet'
 import { Table } from './table.js'
 import top_100_tracts  from '../data/top_100_tracts'
 import {colors} from '../style/colors.js'
@@ -14,7 +14,7 @@ class DonorMap extends React.Component {
         this.state = {
             data: [],
             columns: [],
-            selectedTract: '36061011202'
+            selectedTract: '36119011800',
         }
     }
     componentDidMount() {
@@ -33,22 +33,22 @@ class DonorMap extends React.Component {
         })
     }
 
-    getMedianIncomeStyle(f){
+    getTotalDonatedStyle(f){
         let getColor = (d) => {
-            let colorsarray = [colors.grey, colors.green5, colors.green4, colors.green3, colors.green2, colors.green1]
+            let colorsarray = [colors.grey,colors.red5,colors.red4,colors.red3,colors.red2,colors.red1]
             let color = d === 0 ? colorsarray[0] :
-            (d > 99342) ? colorsarray[1] :
-            (d > 75757) ? colorsarray[2] : 
-            (d > 59341)  ? colorsarray[3] : 
-            (d > 44112)  ? colorsarray[4] : colorsarray[5];
+            (d > 79884) ? colorsarray[1] :
+            (d > 35090) ? colorsarray[2] : 
+            (d > 16650)  ? colorsarray[3] : 
+            (d > 6946)  ? colorsarray[4] : colorsarray[5];
          return color
         }
         return {
-            fillColor: getColor(f.properties.median_inc),
-            weight: 1,
+            fillColor: this.state.selectedTract === f.properties.sub_geo_id?'#FBEEB8':getColor(f.properties.total_donated),
+            weight: this.state.selectedTract === f.properties.sub_geo_id?3:1,
             opacity: 1,
             fillOpacity: 0.7,
-            color: '#000000'
+            color: this.state.selectedTract === f.properties.sub_geo_id?'#ffa20c':'#000000'
         }
     } 
     setSelectedTract(tract){
@@ -56,14 +56,14 @@ class DonorMap extends React.Component {
             selectedTract: tract,
         })
     }
-    onClick(e){
-        console.log('e',e)
-    }
     onEachFeature(feature, layer){
         const onClick=(e)=>{
             this.setState({
                 selectedTract: e.target.feature.properties.sub_geo_id
             })
+            e.target.setStyle(this.getTotalDonatedStyle(e.target.feature))
+            console.log(e)
+            
         }
         layer.on({
             click: onClick
@@ -74,19 +74,20 @@ class DonorMap extends React.Component {
     render(){
         console.log('state',this.state)
         
-        const top_100 = <GeoJSON  data = {top_100_tracts} style={this.getMedianIncomeStyle} onEachFeature={this.onEachFeature.bind(this)}></GeoJSON>
+        const top_100 = <GeoJSON data = {top_100_tracts} style={this.getTotalDonatedStyle.bind(this)} onEachFeature={this.onEachFeature.bind(this)}></GeoJSON>
         let selectedData=  d3.filter(this.state.data,(d) => d.sub_geo_id === this.state.selectedTract)
         const columns = this.state.columns
         return (<div>
-                    <div className='section-header'>Explore the Donors of the Census Tracts with the Most $$ Donated</div>
+                    <div className='section-header'>Explore the Donors from the Census Tracts with the Most Money Donated</div>
                     <div className='flex-wrapper'>
                         <div className='donor-map'>
-                            <Map layers = {top_100} />
+                            <Map layers = {top_100} zoom={6} />
                         </div>
                         <div className='donor-table'>
                         <Table data={selectedData} columns={columns} />
                         </div>
                     </div>
+                    <div className='section-header'>About this data</div>
                 </div>)
     }
 }
