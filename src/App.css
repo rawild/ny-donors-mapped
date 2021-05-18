@@ -243,6 +243,7 @@ ol, ul {
 .flex-wrapper{
   display: flex;
   justify-content: center;
+  width: 100%;
   max-height: 800px;
 }
 
@@ -283,16 +284,4 @@ th,
   padding: 70px;
 }
 
-.piechart-panel{
-  display: inline;
-  width: 100%;
-}
 
-.left {
-  width: 40%;
-  flex:auto;
-}
-.right {
-  width: 40%;
-  flex:auto;
-}

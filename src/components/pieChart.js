@@ -37,6 +37,7 @@ class PieChart extends React.Component {
         let svg = d3.select("."+this.props.pieClass)
                 .append("svg")
                 .attr("height", this.props.height)
+                .attr("width", this.props.width)
                 .attr("viewBox", [-width / 2, -height / 2, width, height]);
 
         svg.append("g")
