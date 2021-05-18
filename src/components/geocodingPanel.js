@@ -4,6 +4,7 @@ import { BarChart } from './barChart.js'
 import summarydata from '../data/summary_data'
 import * as d3 from 'd3'
 import top_10_countries from '../data/top_10_countries.csv'
+import { colors } from '../style/colors.js'
 
 class GeocodingPanel extends React.Component {
     constructor(props){
@@ -42,7 +43,7 @@ class GeocodingPanel extends React.Component {
                 most donations.</div>
                 <BarChart barClass='countryBar' title={"Amount Donated from People in Other Countries"} 
                 data={countryData} xAxisAttribute={"value"} yAxisAttribute={"name"}
-                width={800} height={400} />
+                width={800} height={400} fillColor={colors.red3}/>
 
             </div>
         )

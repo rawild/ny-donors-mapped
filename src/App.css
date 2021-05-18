@@ -301,4 +301,10 @@ th,
   text-align: left;
   padding-bottom: 30px;
 }
+.spacer {
+  height: 50px;
+}
 
+.quintileBar{
+  padding-bottom: 50px;
+}

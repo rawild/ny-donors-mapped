@@ -22,13 +22,13 @@ class BarChart extends React.Component {
                 "translate(" + margin.left + "," + margin.top + ")");
         // Add X axis
         let x = d3.scaleLinear()
-                .domain([0, d3.max(this.props.data.map((d)=>parseFloat(d.value)))])
+                .domain([0, d3.max(this.props.data.map((d)=>parseFloat(d[this.props.xAxisAttribute])))])
                 .range([ 0, width])
        
         svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .attr('class','axis x')
-                .call(d3.axisBottom(x).tickFormat((d) => d3.format("$,.0f")(d)))
+                .call(d3.axisBottom(x).tickFormat((d) => d3.format("$,~s")(d)))
                 .selectAll("text")
                 .attr("transform", "translate(-10,0)rotate(-45)")
                 .style("text-anchor", "end");
@@ -58,7 +58,7 @@ class BarChart extends React.Component {
                 .attr("y", (d) => y(d[this.props.yAxisAttribute]))
                 .attr("width", 0)
                 .attr("height", y.bandwidth() -10 )
-                .attr("fill", colors.red3)
+                .attr("fill", this.props.fillColor)
                 .transition(d3.transition().duration(1000))
                 .attr("width", (d) => x(parseFloat(d[this.props.xAxisAttribute])))
         }
