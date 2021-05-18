@@ -72,8 +72,7 @@ class DonorMap extends React.Component {
 
 
     render(){
-        console.log('state',this.state)
-        
+   
         const top_100 = <GeoJSON data = {top_100_tracts} style={this.getTotalDonatedStyle.bind(this)} onEachFeature={this.onEachFeature.bind(this)}></GeoJSON>
         let selectedData=  d3.filter(this.state.data,(d) => d.sub_geo_id === this.state.selectedTract)
         const columns = this.state.columns
@@ -84,10 +83,11 @@ class DonorMap extends React.Component {
                             <Map layers = {top_100} zoom={6} />
                         </div>
                         <div className='donor-table'>
-                        <Table data={selectedData} columns={columns} />
+                        <Table data={selectedData} columns={columns} initialState={{pageIndex:0,pageSize:15}}
+                            />
                         </div>
                     </div>
-                    <div className='section-header'>About this data</div>
+
                 </div>)
     }
 }

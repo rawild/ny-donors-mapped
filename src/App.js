@@ -1,8 +1,9 @@
 import './App.css';
 import { LayerMap } from './components/layerMap.js'
 import { DonorMap } from './components/donorMap.js'
-import { BarChart } from './components/barChart.js'
 import { PieChartPanel } from './components/pieChartPanel.js'
+import { GeocodingPanel } from './components/geocodingPanel.js'
+import { StatesPanel } from './components/statesPanel.js'
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
       <LayerMap />
       <DonorMap />
       <PieChartPanel />
-      <BarChart/>
+      <GeocodingPanel />
+      <StatesPanel />
+      
     </div>
   );
 }

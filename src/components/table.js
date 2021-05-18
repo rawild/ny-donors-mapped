@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTable, useSortBy, usePagination} from 'react-table'
 
-function Table({ columns, data }) {
+function Table({ columns, data, initialState }) {
     const {
         getTableProps,
         getTableBodyProps,
@@ -21,14 +21,15 @@ function Table({ columns, data }) {
       {
         columns,
         data,
-        initialState: { pageIndex: 0, pageSize: 15, },
+        initialState: initialState,
       },
       useSortBy,usePagination
     )
-
-  
+    
+    
     return (
       <>
+      <div>
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map(headerGroup => (
@@ -84,7 +85,7 @@ function Table({ columns, data }) {
             {pageIndex + 1} of {pageOptions.length}
           {' '}
         </span>
-       
+        </div>
         </div>
       </>
     )

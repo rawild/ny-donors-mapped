@@ -26,7 +26,7 @@ class PieChart extends React.Component {
             .domain(this.props.data.map(d => d.name))
             .range(d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), this.props.data.length).reverse())*/
         let color = (d)=>{
-            if (d.indexOf('Indiv') >= 0){
+            if ((d.indexOf('Indiv') >= 0) || (d.indexOf('New York')>=0)){
                 return colors.red3
             } else {
                 return colors.grey

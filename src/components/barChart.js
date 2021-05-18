@@ -1,24 +1,19 @@
 import * as d3 from 'd3'
 import React from 'react';
+import {colors} from '../style/colors.js'
 
 class BarChart extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            data: [{skill: "CSS", value: 80},{skill: "HTML", value: 70},{skill: "JS", value: 85},{skill: "ANGULAR", value: 90},{skill: "REACT", value: 75},{skill: "D3", value: 70},{skill: "NODE JS", value: 65},{ skill: "JAVA", value: 65},{skill: "UI DESIGN", value: 70},{skill: "XD", value: 65}],
-            yAxisAttribute: "skill",
-            xAxisAttribute: "value",
-            width: 1000,
-            height: 400,
-        }
-        this.chartRef = React.createRef();
     }
-    drawChart() {
+    drawBar() {
+        console.log("top draw bar- props:",this.props)
         let margin = {top: 20, right: 30, bottom: 40, left: 90},
-                    width = this.state.width - margin.left - margin.right,
-                    height = this.state.height - margin.top - margin.bottom;
+                    width = this.props.width - margin.left - margin.right,
+                    height = this.props.height - margin.top - margin.bottom;
         // append the svg object to the body of the page
-        let svg = d3.select(".rowChart")
+        d3.selectAll("."+this.props.barClass).selectAll("svg").remove()
+        let svg = d3.selectAll("."+this.props.barClass)
                 .append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
@@ -27,28 +22,30 @@ class BarChart extends React.Component {
                 "translate(" + margin.left + "," + margin.top + ")");
         // Add X axis
         let x = d3.scaleLinear()
-                .domain([0, 100])
-                .range([ 0, width]);
+                .domain([0, d3.max(this.props.data.map((d)=>parseFloat(d.value)))])
+                .range([ 0, width])
+       
         svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
                 .attr('class','axis x')
-                .call(d3.axisBottom(x))
+                .call(d3.axisBottom(x).tickFormat((d) => d3.format("$,.0f")(d)))
                 .selectAll("text")
                 .attr("transform", "translate(-10,0)rotate(-45)")
                 .style("text-anchor", "end");
         // Add Y axis
         let y = d3.scaleBand()
                 .range([ 0, height ])
-                .domain(this.state.data.map((d) =>  d[this.state.yAxisAttribute]))
+                .domain(this.props.data.map((d) =>  d[this.props.yAxisAttribute]))
                 .padding(.1);
         svg.append("g")
                 .attr('class','axis y')
-                .call(d3.axisLeft(y))
+                .call(d3.axisLeft(y).tickSize(0))
                 .selectAll("text")
                 .attr("dy", null)
+        
         // Add Bars
         svg.selectAll("myRect")
-                .data(this.state.data)
+                .data(this.props.data)
                 .enter()
                 .append("rect")
                 .on('mouseover', function(){
@@ -58,20 +55,25 @@ class BarChart extends React.Component {
                     d3.select(this).style('opacity', 1)
                  })
                 .attr("x", x(0) )
-                .attr("y", (d) => y(d[this.state.yAxisAttribute]))
+                .attr("y", (d) => y(d[this.props.yAxisAttribute]))
                 .attr("width", 0)
                 .attr("height", y.bandwidth() -10 )
-                .attr("fill", "#DF337D")
+                .attr("fill", colors.red3)
                 .transition(d3.transition().duration(1000))
-                .attr("width", (d) => x(d[this.state.xAxisAttribute]))
+                .attr("width", (d) => x(parseFloat(d[this.props.xAxisAttribute])))
         }
-        componentDidMount() {
-            this.drawChart();
+        componentDidMount(){
+                this.drawBar()
         }
-
+        componentDidUpdate() {
+                this.drawBar()
+        }
         render(){
+            return (<div>
+                        <div className='chart-title'>{this.props.title}</div>
+                        <div className={this.props.barClass}></div>
+                    </div>)
         
-            return (<div className='rowChart'></div>)
         }
 }
 

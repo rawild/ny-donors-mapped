@@ -1,0 +1,19 @@
+{ 
+    "NumberOfDonors": [
+        {"name": "Organizational Donors", "value": 77540},
+        {"name":"Individual Donors", "value":639722}
+    ],
+    "AmountOfDonations": [
+        {"name": "Organizations", "value":  512786078.32 },
+        {"name":"Individuals", "value": 402543935.72 }
+    ],
+    "TotalGeocoded": [
+        {"name": "Individuals Geocoded", "value":  637595 },
+        {"name":"Not Geocoded", "value": 2127 }
+    ],
+    "StatesDonors":[
+        {"name": "New York Donors", "value":  340057164 },
+        {"name":"Other States", "value": 61645250 }
+    ]
+
+}
