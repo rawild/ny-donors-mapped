@@ -16,6 +16,7 @@ class DonorMap extends React.Component {
             columns: [],
             selectedTract: '36119011800',
             selectedTractIncome: '217500',
+            selectedTractPerPerson: '108',
             
         }
     }
@@ -62,7 +63,8 @@ class DonorMap extends React.Component {
         const onClick=(e)=>{
             this.setState({
                 selectedTract: e.target.feature.properties.sub_geo_id,
-                selectedTractIncome: e.target.feature.properties.median_inc
+                selectedTractIncome: e.target.feature.properties.median_inc,
+                selectedTractPerPerson: e.target.feature.properties.total_donated/e.target.feature.properties.S0101_C01_001E
             })
             e.target.setStyle(this.getTotalDonatedStyle(e.target.feature))
             console.log(e)
@@ -107,18 +109,26 @@ class DonorMap extends React.Component {
         return (<div>
                     <div className='section-header'>Explore the Donors from the Census Tracts with the Most Money Donated</div>
                     <div className='tract-info'>The selected census tract donated 
-                        <div className='mi-div'>
+                       <div className='flex-wrapper'> <div className='mi-div'>
                         <div className={this.getTotalDonatedClass(sum)}>
                             <div className='padding'>{d3.format("$,d")(sum)}</div>
                             </div>
                         </div> 
-                        from 
+                        <div className='padding'>from </div>
                         <div className='mi-div'>
-                            <div className={this.getDonatedPerPersonClass(selectedData.length)}>
+                            <div className={this.getDonatedPerPersonClass(this.state.selectedTractPerPerson)}>
                                 <div className='padding'>{selectedData.length} donors</div>
                             </div>
-                        </div> in the last 5 years.<br/><br/>
-                    It has a median household income of <div className='mi-div'><div className={this.getMedianIncomeClass(this.state.selectedTractIncome)}><div className='padding'>{d3.format("$,d")(this.state.selectedTractIncome)}</div></div></div><br/>
+                        </div> in the last 5 years.
+                        <div className='padding'></div>
+                        <div >It has a median household income of </div>
+                    <div className='mi-div'>
+                        <div className={this.getMedianIncomeClass(this.state.selectedTractIncome)}>
+                            <div className='padding'>{d3.format("$,d")(this.state.selectedTractIncome)}</div>
+                            </div>
+                            </div>
+                            <br/>
+                    </div>
                     Select another census tract to see it's donors!</div>
                     <div className='flex-wrapper'>
                         <div className='donor-map'>

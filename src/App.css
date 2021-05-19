@@ -33,7 +33,7 @@ ol, ul {
 }
 .leaflet-container {
   width: 90%;
-  height: 700px;
+  height: 550px;
   margin: auto;
 }
 
@@ -190,6 +190,7 @@ ol, ul {
   max-height: 800px;
   padding-top:30px;
   margin-bottom: 40px;
+  vertical-align: center;
 }
 
 .dark{
