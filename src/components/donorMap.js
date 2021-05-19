@@ -15,6 +15,8 @@ class DonorMap extends React.Component {
             data: [],
             columns: [],
             selectedTract: '36119011800',
+            selectedTractIncome: '217500',
+            
         }
     }
     componentDidMount() {
@@ -59,7 +61,8 @@ class DonorMap extends React.Component {
     onEachFeature(feature, layer){
         const onClick=(e)=>{
             this.setState({
-                selectedTract: e.target.feature.properties.sub_geo_id
+                selectedTract: e.target.feature.properties.sub_geo_id,
+                selectedTractIncome: e.target.feature.properties.median_inc
             })
             e.target.setStyle(this.getTotalDonatedStyle(e.target.feature))
             console.log(e)
@@ -70,6 +73,30 @@ class DonorMap extends React.Component {
         })
     }
 
+    getMedianIncomeClass(medianIncome){
+        return medianIncome === 0 ? ' mi-0' :
+        (medianIncome > 99342) ? ' mi-1' :
+        (medianIncome > 75757) ? ' mi-2': 
+        (medianIncome > 59341)  ? ' mi-3' : 
+        (medianIncome > 44112)  ? ' mi-4' : ' mi-5';
+    }
+
+    getTotalDonatedClass(totalDonated){
+        return totalDonated === 0 ? 'mi-0' :
+        (totalDonated > 79884) ? 'td-1' :
+        (totalDonated > 35090) ? 'td-2' : 
+        (totalDonated > 16650)  ? 'td-3' : 
+        (totalDonated > 6946)  ? 'td-4' : 'td-5';
+    }
+    
+    getDonatedPerPersonClass(DonatedPerPerson) {
+        return DonatedPerPerson === 0 ? 'mi-0' :
+        (DonatedPerPerson  > 19.95) ? 'dpp-1' :
+        (DonatedPerPerson  > 9.76) ? 'dpp-2' : 
+        (DonatedPerPerson  > 4.88)  ? 'dpp-3' : 
+        (DonatedPerPerson  > 2.24)  ? 'dpp-4' : 'dpp-5';
+    }
+    
 
     render(){
    
@@ -79,7 +106,19 @@ class DonorMap extends React.Component {
         const columns = this.state.columns
         return (<div>
                     <div className='section-header'>Explore the Donors from the Census Tracts with the Most Money Donated</div>
-                    <div className='tract-info'>The selected census tract donated {d3.format("$,d")(sum)} from {selectedData.length} donors in the last 5 years.<br/>
+                    <div className='tract-info'>The selected census tract donated 
+                        <div className='mi-div'>
+                        <div className={this.getTotalDonatedClass(sum)}>
+                            <div className='padding'>{d3.format("$,d")(sum)}</div>
+                            </div>
+                        </div> 
+                        from 
+                        <div className='mi-div'>
+                            <div className={this.getDonatedPerPersonClass(selectedData.length)}>
+                                <div className='padding'>{selectedData.length} donors</div>
+                            </div>
+                        </div> in the last 5 years.<br/>
+                    It has a median household income of <div className='mi-div'><div className={this.getMedianIncomeClass(this.state.selectedTractIncome)}><div className='padding'>{d3.format("$,d")(this.state.selectedTractIncome)}</div></div></div><br/>
                     Select another census tract to see it's donors!</div>
                     <div className='flex-wrapper'>
                         <div className='donor-map'>

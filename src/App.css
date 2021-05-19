@@ -214,9 +214,11 @@ ol, ul {
 }
 
 .tract-info {
-  width:100%;
+  width:60%;
   min-width:100px;
+  max-width:700px;
   vertical-align: auto;
+  margin:auto;
 }
 th,
     td {
@@ -267,4 +269,12 @@ th,
 .percent-label{
   font-size: 10px;
   background-color: #fff;
+}
+
+.mi-div{
+  width: 170px;
+  margin:auto;
+}
+.padding{
+  padding: 10px;
 }
