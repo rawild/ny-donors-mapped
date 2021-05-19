@@ -22,7 +22,7 @@ function App() {
       <LayerMap />
       <RecipientsPanel />
       <DonorMap />
-      
+      <div className="App-header"><p>That's All Folks!</p></div>
      
       
     </div>

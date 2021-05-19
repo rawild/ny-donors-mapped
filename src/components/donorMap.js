@@ -75,19 +75,24 @@ class DonorMap extends React.Component {
    
         const top_100 = <GeoJSON data = {top_100_tracts} style={this.getTotalDonatedStyle.bind(this)} onEachFeature={this.onEachFeature.bind(this)}></GeoJSON>
         let selectedData=  d3.filter(this.state.data,(d) => d.sub_geo_id === this.state.selectedTract)
+        let sum = d3.sum(selectedData,(d)=>d['Donation Amount'])
         const columns = this.state.columns
         return (<div>
                     <div className='section-header'>Explore the Donors from the Census Tracts with the Most Money Donated</div>
+                    <div className='tract-info'>The selected census tract donated {d3.format("$,d")(sum)} from {selectedData.length} donors in the last 5 years.<br/>
+                    Select another census tract to see it's donors!</div>
                     <div className='flex-wrapper'>
                         <div className='donor-map'>
-                            <Map layers = {top_100} zoom={6} />
+                            <Map layers = {top_100} zoom={6.5} />
                         </div>
                         <div className='donor-table'>
                         <Table data={selectedData} columns={columns} initialState={{pageIndex:0,pageSize:15}}
                             />
                         </div>
                     </div>
-
+                    <div className="spacer"/>
+                    <div className="spacer"/>
+                    <div className="spacer"/>
                 </div>)
     }
 }
