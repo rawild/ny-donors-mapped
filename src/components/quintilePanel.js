@@ -7,16 +7,16 @@ import {colors} from '../style/colors.js'
 class QuintilePanel extends React.Component {
     getColor(d){
         let mi = d["Median Income "] 
-        if (mi === "$1-$44,111"){
+        if (mi.indexOf("$1-$44,111")>-1){
             return colors.green1
         } 
-        if (mi === "$44,112-$59,340"){
+        if (mi.indexOf("$44,112-$59,340") > -1){
             return colors.green2
         }
-        if (mi === "$59,341-$75,576"){
+        if (mi.indexOf("$59,341-$75,576") > -1){
             return colors.green3
         }
-        if (mi === "$75,757-$99,341"){
+        if (mi.indexOf("$75,757-$99,341") > -1){
             return colors.green4
         }
 
@@ -36,7 +36,9 @@ class QuintilePanel extends React.Component {
                 like central Albany, still house offices for lobbyists. You can explore in more detail below.<br/><br/>
                 The census data used for median income comes from the 2019 ACS survey. It was accessed via the US Census API.</div>
                 </div>
-                <div className='spacer'></div>
+                <div className='section-header'>20% of the Population Contributes more than 50% of the Money</div>
+                <div className='blurb'>Each bar represents a quintile of the population (20%). As you can see, the 
+                donations are not proportional to the populations.</div>
                 <BarChart barClass='quintileBar' data={quintiles}  title={"Amount Donated by Median Income within NY"} 
                 xAxisAttribute={"Total Donated"} yAxisAttribute={"Median Income "}
                 width={800} height={400} fillColor={(d)=>this.getColor(d)} />

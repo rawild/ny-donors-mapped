@@ -1,5 +1,5 @@
-[{"Median Income ":"$1-$44,111","Total Donated":27766507.9400000013},
-{"Median Income ":"$44,112-$59,340","Total Donated":25870458.6999999993},
-{"Median Income ":"$59,341-$75,576","Total Donated":40972787.2800000012},
-{"Median Income ":"$75,757-$99,341","Total Donated":60818433.6499999985},
-{"Median Income ":"$99,342-$250,001+","Total Donated":184479742.3000000119}]
+[{"Median Income ":"Lowest Income 20% ($1-$44,111)","Total Donated":27766507.9400000013},
+{"Median Income ":"Low Income 20% ($44,112-$59,340)","Total Donated":25870458.6999999993},
+{"Median Income ":"Middle Income 20% ($59,341-$75,576)","Total Donated":40972787.2800000012},
+{"Median Income ":"High Income 20%($75,757-$99,341)","Total Donated":60818433.6499999985},
+{"Median Income ":"Highest Income 20% ($99,342-$250,001+)","Total Donated":184479742.3000000119}]

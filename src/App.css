@@ -302,7 +302,7 @@ th,
   padding-bottom: 30px;
 }
 .spacer {
-  height: 50px;
+  height: 20px;
 }
 
 .quintileBar{
@@ -312,4 +312,9 @@ th,
 .legend{
   font-size: 10px;
   font-weight: lighter;
+}
+
+.percent-label{
+  font-size: 10px;
+  background-color: #fff;
 }

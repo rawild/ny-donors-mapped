@@ -1,5 +1,6 @@
 const colors = {
     grey:  '#dcd6d6',
+    grey2: '#282c34',
     // income values
     green1: '#c7e9c0',
     green2: '#74c476',

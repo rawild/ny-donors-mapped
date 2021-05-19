@@ -7,7 +7,7 @@ class BarChart extends React.Component {
         super(props);
     }
     drawBar() {
-        let margin = {top: 20, right: 30, bottom: 40, left: 90},
+        let margin = {top: 20, right: 30, bottom: 40, left: 195},
                     width = this.props.width - margin.left - margin.right,
                     height = this.props.height - margin.top - margin.bottom;
         // append the svg object to the body of the page
@@ -36,11 +36,7 @@ class BarChart extends React.Component {
                 .range([ 0, height ])
                 .domain(this.props.data.map((d) =>  d[this.props.yAxisAttribute]))
                 .padding(.1);
-        svg.append("g")
-                .attr('class','axis y')
-                .call(d3.axisLeft(y).tickSize(0))
-                .selectAll("text")
-                .attr("dy", null)
+      
         
         // Add Bars
         svg.selectAll("myRect")
@@ -60,6 +56,27 @@ class BarChart extends React.Component {
                 .attr("fill", this.props.fillColor)
                 .transition(d3.transition().duration(1000))
                 .attr("width", (d) => x(parseFloat(d[this.props.xAxisAttribute])))
+        
+        svg.append("g")
+                .attr('class','axis y')
+                .call(d3.axisLeft(y).tickSize(0))
+                .selectAll("text")
+                .attr("dy", null)
+
+        svg.append("line")
+                .attr("x1", x(67981586))
+                .attr("y1", 0)
+                .attr("x2", x(67981586))
+                .attr("y2", height)
+                .style("stroke-width", 1.5)
+                .style("stroke", colors.grey2)
+                .style("fill", "none");
+        svg.append("text")
+                 .attr("x",x(67981586)/1.25)
+                 .attr("y",-2)
+                 .attr("class","percent-label")
+                 .text("20% of the money")
+                 
         }
         componentDidMount(){
                 this.drawBar()
@@ -70,6 +87,7 @@ class BarChart extends React.Component {
         render(){
             return (<div>
                         <div className='chart-title'>{this.props.title}</div>
+                        <div className='spacer' />
                         <div className={this.props.barClass}></div>
                     </div>)
         

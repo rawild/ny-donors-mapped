@@ -7,7 +7,7 @@ class StackedBarChart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            margins: { top: 50, bottom: 20, left: 500, right: 20 },
+            margins: { top: 70, bottom: 20, left: 500, right: 20 },
             format: d3.format(",." + d3.precisionFixed(1) + "f"),
             data: []
         }
@@ -45,7 +45,7 @@ class StackedBarChart extends React.Component {
             .scaleBand()
             .domain(this.state.data.map((d)=>d[this.props.yAxisAttribute]))
             .range([this.state.margins.top,this.props.height-this.state.margins.bottom])
-            .padding(0.1)
+            .padding(0.3)
         let xScale = d3
             .scaleLinear()
             .domain([0,16200000])
@@ -93,7 +93,7 @@ class StackedBarChart extends React.Component {
                 .attr("width",40)
                 .attr("height",20)
          
-        let offset = [15,100,155,220,260]
+        let offset = [15,100,155,220,255]
         div.append("g")
             .selectAll("text")
             .data(['Lowest Income','Low','Middle','High','Highest Income'])
@@ -125,9 +125,11 @@ class StackedBarChart extends React.Component {
      * @returns {void}
      */
     render() {
-        console.log('in stackedBar Render',this.props,this.state)
        return (
-           <div className={this.props.barClass}></div>
+           <div>
+            <div>{this.props.title}</div>
+            <div className={this.props.barClass}></div>
+           </div>
        )
     }
 }
