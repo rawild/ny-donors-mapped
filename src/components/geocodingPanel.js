@@ -22,7 +22,6 @@ class GeocodingPanel extends React.Component {
     }
 
     render(){
-        console.log("state",this.state)
         const countryData = this.state.data        
         return(
             <div>
@@ -39,7 +38,7 @@ class GeocodingPanel extends React.Component {
                     </div>
                 </div>
                 <div className='section-header'>{'.02% of the Money came from outside the US'}</div>
-                <div className='blurb'>99.98% of the money ($401.7 Million) of the money came from the US, but here are the other countries with the
+                <div className='blurb'>99.98% of the money ($401.7 Million) came from the US, but here are the other countries with the
                 most donations.</div>
                 <BarChart barClass='countryBar' title={"Amount Donated from People in Other Countries"} 
                 data={countryData} xAxisAttribute={"value"} yAxisAttribute={"name"}

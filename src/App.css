@@ -308,3 +308,8 @@ th,
 .quintileBar{
   padding-bottom: 50px;
 }
+
+.legend{
+  font-size: 10px;
+  font-weight: lighter;
+}

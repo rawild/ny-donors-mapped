@@ -5,6 +5,7 @@ import { PieChartPanel } from './components/pieChartPanel.js'
 import { GeocodingPanel } from './components/geocodingPanel.js'
 import { StatesPanel } from './components/statesPanel.js'
 import { QuintilePanel } from './components/quintilePanel';
+import { RecipientsPanel } from './components/recipientsPanel';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <StatesPanel />
       <QuintilePanel />
       <LayerMap />
+      <RecipientsPanel />
       <DonorMap />
       
      

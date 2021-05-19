@@ -28,7 +28,8 @@ class QuintilePanel extends React.Component {
             <div>
                 <div className='dark'><div className='section-header'>Analysis of Donors by Income with Census Data</div>
                 <div className='blurb'>To analyze the class of these individual donors, the donors were grouped by census tract. 
-                Those census tracts provide a median income as a proxy for the wealth of the individual. As you can see below, more than
+                Those census tracts provide a median income as a proxy for the wealth of the individual. I've divided the census tracts up into quintiles,
+                so each bracket represents 20% of the census tracts and roughly 20% of the population. As you can see below, more than
                 half (54%) of the money donated came from donors that lived in the most wealthy areas. If you look at people living in the top
                 two wealthiest tiers, the donations comprise 72%, almost three quarters, of the donors. Interestingly the lowest income bracket
                 donated more than the second lowest. This reveals a limitation of this method, where some of the lowest income census brackets

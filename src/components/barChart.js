@@ -7,7 +7,6 @@ class BarChart extends React.Component {
         super(props);
     }
     drawBar() {
-        console.log("top draw bar- props:",this.props)
         let margin = {top: 20, right: 30, bottom: 40, left: 90},
                     width = this.props.width - margin.left - margin.right,
                     height = this.props.height - margin.top - margin.bottom;
