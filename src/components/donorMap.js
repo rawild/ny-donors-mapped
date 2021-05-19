@@ -117,7 +117,7 @@ class DonorMap extends React.Component {
                             <div className={this.getDonatedPerPersonClass(selectedData.length)}>
                                 <div className='padding'>{selectedData.length} donors</div>
                             </div>
-                        </div> in the last 5 years.<br/>
+                        </div> in the last 5 years.<br/><br/>
                     It has a median household income of <div className='mi-div'><div className={this.getMedianIncomeClass(this.state.selectedTractIncome)}><div className='padding'>{d3.format("$,d")(this.state.selectedTractIncome)}</div></div></div><br/>
                     Select another census tract to see it's donors!</div>
                     <div className='flex-wrapper'>
