@@ -21,10 +21,8 @@ class PieChart extends React.Component {
             .innerRadius(0)
             .outerRadius(Math.min(width, height) / 2 - 1)
         let arcLabel =  d3.arc().innerRadius(radius).outerRadius(radius);
-        console.log(arcLabel)
-        /*let color = d3.scaleOrdinal()
-            .domain(this.props.data.map(d => d.name))
-            .range(d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), this.props.data.length).reverse())*/
+
+
         let color = (d)=>{
             if ((d.indexOf('Indiv') >= 0) || (d.indexOf('New York')>=0)){
                 return colors.red3
@@ -32,7 +30,14 @@ class PieChart extends React.Component {
                 return colors.grey
             }
         }
+        
+        let total = d3.sum(this.props.data,(d)=>d.value)
+        this.props.data.forEach(d => d.total = total)
         const arcs = pie(this.props.data);
+        // Define the div for the tooltip
+        let div = d3.select("body").append("div")	
+            .attr("class", "pie-tooltip")				
+            .style("opacity", 0);
         // append the svg object to the body of the page
         let svg = d3.select("."+this.props.pieClass)
                 .append("svg")
@@ -47,8 +52,26 @@ class PieChart extends React.Component {
             .join("path")
             .attr("fill", d => color(d.data.name))
             .attr("d", arc)
+            .on('mouseover', function(e){
+                d3.select(this).style('opacity', 0.5)
+                d3.select(this).style('stroke-width',6)
+                div.transition()		
+                    .duration(200)		
+                    .style("opacity", .9);		
+                div.html(d3.format(".2%")(this.__data__.data.value/this.__data__.data.total))	
+                    .style("left", (e.pageX) + "px")		
+                    .style("top", (e.pageY - 28) + "px");			
+             })
+            .on('mouseout', function(){
+                d3.select(this).style('opacity', 1)
+                d3.select(this).style('stroke-width',1)
+                div.transition()		
+                    .duration(500)		
+                    .style("opacity", 0);	
+             })
             .append("title")
-            .text(d => `${d.data.skill}: ${d.data.value.toLocaleString()}`);
+            .text(d => `${d.data.skill}: ${d.data.value.toLocaleString()}`)
+            
         // Add Labels
         svg.append("g")
             .attr("font-family", "sans-serif")
@@ -67,6 +90,8 @@ class PieChart extends React.Component {
                 .attr("y", "0.7em")
                 .attr("fill-opacity", 0.7)
                 .text(d => this.props.format?d3.format(this.props.format)(d.data.value):d.data.value.toLocaleString()));
+
+            
         }
         
         componentDidMount() {

@@ -30,17 +30,26 @@ class StackedBarChart extends React.Component {
             return colors.green5
         }
     }
+    getTotal(d){
+        let keys = this.state.data.columns.slice(1).reverse()
+        let total=0.0
+        for (const key of keys){
+            total = total + parseFloat(d[key])
+        }
+        return total
+    }
 
     drawStackedBar(){
-        console.log('top stacked bar', this.state)
-       
         let keys = this.state.data.columns.slice(1).reverse()
+        this.state.data.forEach(d => d.total = this.getTotal(d))
         let stack = d3
               .stack()
               .keys(keys)
               (this.state.data)
               .map(d => (d.forEach(v => v.key = d.key), d))
-        console.log(this.state.data.map((d)=>d[this.props.yAxisAttribute]))
+        let div = d3.select("body").append("div")	
+              .attr("class", "bar-tooltip")				
+              .style("opacity", 0);
         let yScale = d3
             .scaleBand()
             .domain(this.state.data.map((d)=>d[this.props.yAxisAttribute]))
@@ -50,13 +59,13 @@ class StackedBarChart extends React.Component {
             .scaleLinear()
             .domain([0,16200000])
             .range([this.state.margins.left, this.props.width - this.state.margins.right]);
-        let div = d3.selectAll("."+this.props.barClass).append("div")
+        let bardiv = d3.selectAll("."+this.props.barClass).append("div")
             .attr("class", "barchart")
             .append("svg")
             .attr("width", this.props.width)
             .attr("height", this.props.height)
             
-        div.append("g")
+        bardiv.append("g")
             .selectAll("g")
             .data(stack)
             .join("g")
@@ -69,20 +78,37 @@ class StackedBarChart extends React.Component {
                 .attr("y", (d) => yScale(d.data[this.props.yAxisAttribute]))
                 .attr("width", d => xScale(d[1]) - xScale(d[0]))
                 .attr("height", yScale.bandwidth())
+                .on('mouseover', function(e){
+                    d3.select(this).style('opacity', 0.5)
+                    d3.select(this).style('stroke-width',6)
+                    div.transition()		
+                        .duration(200)		
+                        .style("opacity", .9);		
+                    div.html(d3.format("$,d")(this.__data__[1]-this.__data__[0])+"<br/>"+d3.format(".2%")((this.__data__[1]-this.__data__[0])/this.__data__.data.total))	
+                        .style("left", (e.pageX) + "px")		
+                        .style("top", (e.pageY - 60) + "px");			
+                 })
+                .on('mouseout', function(){
+                    d3.select(this).style('opacity', 1)
+                    d3.select(this).style('stroke-width',1)
+                    div.transition()		
+                        .duration(500)		
+                        .style("opacity", 0);	
+                })
     
 
         const yAxis = d3.axisLeft(yScale).tickSize(1).tickPadding(10);
         const xAxis = d3.axisTop(xScale)
-        div.append("g")
+        bardiv.append("g")
             .attr("class", "axis")
             .attr("transform", `translate(${xScale(this.state.margins.left)},0)`)
             .call(yAxis)
         
-        div.append("g")
+        bardiv.append("g")
             .attr("transform", `translate(0,${0 + this.state.margins.top})`)
             .call(xAxis.tickFormat((d) => d3.format("$,~s")(d)))
 
-        div.append("g")
+        bardiv.append("g")
             .attr("class","legend")
             .selectAll("rect")
             .data(keys.reverse())
@@ -94,7 +120,7 @@ class StackedBarChart extends React.Component {
                 .attr("height",20)
          
         let offset = [15,100,155,220,255]
-        div.append("g")
+        bardiv.append("g")
             .selectAll("text")
             .data(['Lowest Income','Low','Middle','High','Highest Income'])
             .join("text")

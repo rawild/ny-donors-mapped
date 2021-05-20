@@ -10,6 +10,9 @@ class BarChart extends React.Component {
         let margin = {top: 20, right: 30, bottom: 40, left: 195},
                     width = this.props.width - margin.left - margin.right,
                     height = this.props.height - margin.top - margin.bottom;
+        let total = d3.sum(this.props.data, (d)=>d[this.props.xAxisAttribute])
+        this.props.data.forEach(d => d.total = total)
+        this.props.data.forEach(d => d.value = d[this.props.xAxisAttribute])
         // append the svg object to the body of the page
         d3.selectAll("."+this.props.barClass).selectAll("svg").remove()
         let svg = d3.selectAll("."+this.props.barClass)
@@ -36,25 +39,37 @@ class BarChart extends React.Component {
                 .range([ 0, height ])
                 .domain(this.props.data.map((d) =>  d[this.props.yAxisAttribute]))
                 .padding(.1);
-      
-        
+        let div = d3.select("body").append("div")	
+                .attr("class", "bar-tooltip")				
+                .style("opacity", 0);
         // Add Bars
         svg.selectAll("myRect")
                 .data(this.props.data)
                 .enter()
                 .append("rect")
-                .on('mouseover', function(){
-                    d3.select(this).style('opacity', 0.5)
+                .on('mouseover', function(e){
+                        d3.select(this).style('opacity', 0.5)
+                        d3.select(this).style('stroke-width',6)
+                        div.transition()		
+                            .duration(200)		
+                            .style("opacity", .9);		
+                        div.html(d3.format("$,d")(this.__data__.value)+"<br/>"+d3.format(".2%")(this.__data__.value/this.__data__.total))	
+                            .style("left", (e.pageX) + "px")		
+                            .style("top", (e.pageY - 38) + "px");			
                  })
                 .on('mouseout', function(){
-                    d3.select(this).style('opacity', 1)
+                        d3.select(this).style('opacity', 1)
+                        d3.select(this).style('stroke-width',1)
+                        div.transition()		
+                            .duration(500)		
+                            .style("opacity", 0);	
                  })
                 .attr("x", x(0) )
                 .attr("y", (d) => y(d[this.props.yAxisAttribute]))
                 .attr("width", 0)
                 .attr("height", y.bandwidth() -10 )
                 .attr("fill", this.props.fillColor)
-                .transition(d3.transition().duration(1000))
+                .transition(d3.transition().duration(3000))
                 .attr("width", (d) => x(parseFloat(d[this.props.xAxisAttribute])))
         
         svg.append("g")
