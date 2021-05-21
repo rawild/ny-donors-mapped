@@ -23,7 +23,7 @@ class RecipientsPanel extends React.Component{
                     from the highest income bracket. So their donations are concentrated at the top towards the most powerful people and PACs. 
                     </div>
                 <StackedBarChart barClass={'recipientsBar'} yAxisAttribute={'Name '} height={600} width={1000} 
-                title={'The Donations by Income to Biggest Recipients'}/>
+                title={'Andrew Cuomo got more money from wealthy individuals than anyone else did in total'}/>
             </div>
         )
     }

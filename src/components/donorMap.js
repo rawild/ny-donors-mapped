@@ -108,7 +108,7 @@ class DonorMap extends React.Component {
         const columns = this.state.columns
         return (<div>
                     <div className='section-header'>Explore the Donors from the Census Tracts with the Most Money Donated</div>
-                    <div className='tract-info'>The selected census tract donated 
+                    <div className='tract-info'>The selected census tract donated: 
                        <div className='flex-wrapper'> <div className='mi-div'>
                         <div className={this.getTotalDonatedClass(sum)}>
                             <div className='padding'>{d3.format("$,d")(sum)}</div>

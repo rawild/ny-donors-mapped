@@ -29,7 +29,7 @@ class StatesPanel extends React.Component {
                         return ({'Header': d,'accessor': d,
                         Cell: ({value})=>d3.format(",d")(value)})
                     } else {
-                        return ({'Header': d,'accessor': d})
+                        return ({'Header': 'State','accessor': d})
                     }
                 })
             })
@@ -55,7 +55,7 @@ class StatesPanel extends React.Component {
         const stateColumns = this.state.stateColumns      
         return(
             <div>
-                <div className='section-header'>{'Donors Across the US'}</div>
+                <div className='section-header'>16% of Donations came from other States</div>
                 <div className='blurb'>Most of the donations come from New York. The rest are adjacent states or populous states. Notable exceptions 
                 to this include Arkansas, where 239 donors contributed more than $7 million, and the District of Columbia. </div>
                 <div className='flex-wrapper'>
