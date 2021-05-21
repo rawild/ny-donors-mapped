@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/ny-donors-mapped/static/css/main.f7bb6b47.chunk.css",
-    "main.js": "/ny-donors-mapped/static/js/main.627d508a.chunk.js",
-    "main.js.map": "/ny-donors-mapped/static/js/main.627d508a.chunk.js.map",
-    "runtime-main.js": "/ny-donors-mapped/static/js/runtime-main.64cdcaaa.js",
-    "runtime-main.js.map": "/ny-donors-mapped/static/js/runtime-main.64cdcaaa.js.map",
-    "static/js/2.b718b742.chunk.js": "/ny-donors-mapped/static/js/2.b718b742.chunk.js",
-    "static/js/2.b718b742.chunk.js.map": "/ny-donors-mapped/static/js/2.b718b742.chunk.js.map",
-    "static/js/3.571842c9.chunk.js": "/ny-donors-mapped/static/js/3.571842c9.chunk.js",
-    "static/js/3.571842c9.chunk.js.map": "/ny-donors-mapped/static/js/3.571842c9.chunk.js.map",
+    "main.css": "/ny-donors-mapped/static/css/main.bbf02873.chunk.css",
+    "main.js": "/ny-donors-mapped/static/js/main.e14f6eb6.chunk.js",
+    "main.js.map": "/ny-donors-mapped/static/js/main.e14f6eb6.chunk.js.map",
+    "runtime-main.js": "/ny-donors-mapped/static/js/runtime-main.e048e641.js",
+    "runtime-main.js.map": "/ny-donors-mapped/static/js/runtime-main.e048e641.js.map",
+    "static/js/2.1f846e2a.chunk.js": "/ny-donors-mapped/static/js/2.1f846e2a.chunk.js",
+    "static/js/2.1f846e2a.chunk.js.map": "/ny-donors-mapped/static/js/2.1f846e2a.chunk.js.map",
+    "static/js/3.5fac583c.chunk.js": "/ny-donors-mapped/static/js/3.5fac583c.chunk.js",
+    "static/js/3.5fac583c.chunk.js.map": "/ny-donors-mapped/static/js/3.5fac583c.chunk.js.map",
     "index.html": "/ny-donors-mapped/index.html",
-    "static/css/main.f7bb6b47.chunk.css.map": "/ny-donors-mapped/static/css/main.f7bb6b47.chunk.css.map",
-    "static/js/2.b718b742.chunk.js.LICENSE.txt": "/ny-donors-mapped/static/js/2.b718b742.chunk.js.LICENSE.txt",
+    "static/css/main.bbf02873.chunk.css.map": "/ny-donors-mapped/static/css/main.bbf02873.chunk.css.map",
+    "static/js/2.1f846e2a.chunk.js.LICENSE.txt": "/ny-donors-mapped/static/js/2.1f846e2a.chunk.js.LICENSE.txt",
+    "static/media/arkansas_donors_cleaned.4fea407f.csv": "/ny-donors-mapped/static/media/arkansas_donors_cleaned.4fea407f.csv",
     "static/media/states_donors_sum.a49e4dae.csv": "/ny-donors-mapped/static/media/states_donors_sum.a49e4dae.csv",
     "static/media/top20_total_recipients.65bb56f0.csv": "/ny-donors-mapped/static/media/top20_total_recipients.65bb56f0.csv",
     "static/media/top_100_tracts_contributions.36ccfb04.csv": "/ny-donors-mapped/static/media/top_100_tracts_contributions.36ccfb04.csv",
     "static/media/top_10_countries.20764b22.csv": "/ny-donors-mapped/static/media/top_10_countries.20764b22.csv"
   },
   "entrypoints": [
-    "static/js/runtime-main.64cdcaaa.js",
-    "static/js/2.b718b742.chunk.js",
-    "static/css/main.f7bb6b47.chunk.css",
-    "static/js/main.627d508a.chunk.js"
+    "static/js/runtime-main.e048e641.js",
+    "static/js/2.1f846e2a.chunk.js",
+    "static/css/main.bbf02873.chunk.css",
+    "static/js/main.e14f6eb6.chunk.js"
   ]
 }

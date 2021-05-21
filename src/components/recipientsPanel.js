@@ -13,9 +13,9 @@ class RecipientsPanel extends React.Component{
                     <br/><br/>
                     A further flaw in my analysis is revealed by the New Yorker's for a Balanced Albany, which is shown below to have
                     significant support from low-income areas. This PAC is in fact funded entirely by 45 donations only, all from billionaires
-                    like Daniel Loeb and the Waltons.  It was formed to counter-act the push to oust the IDC in Albany. The IDC was a small group
-                    of Democrats giving the Republicans control of the New York State Senate. <br/><br/>
-                    Some of those billionaires like Roger Hertog live very close to central park, too close in fact,
+                    like Daniel Loeb and the Waltons.  It was formed to counteract the push to oust the IDC in Albany. The IDC was a small group
+                    of Democrats who gave the Republicans control of the New York State Senate. <br/><br/>
+                    Some of the billionaires bank-rolling New Yorkers for a Balanced Albany like Roger Hertog, live very close to central park, too close in fact,
                     for my geocoding, which put the latitude and longitudinal coordinates inside the census tract that is central park. According to the census, the census
                     tract that is central park as a median income of $0, thus making it seem like the New Yorkers for a Balanced Albany PAC gets $3 million from
                     the lowest income areas.<br/><br/>

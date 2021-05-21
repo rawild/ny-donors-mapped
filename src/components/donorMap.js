@@ -129,7 +129,7 @@ class DonorMap extends React.Component {
                             </div>
                             <br/>
                     </div>
-                    Select another census tract to see it's donors!</div>
+                    Select another census tract to see its donors!</div>
                     <div className='flex-wrapper'>
                         <div className='donor-map'>
                             <Map layers = {top_100} zoom={6.5} />
