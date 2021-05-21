@@ -140,6 +140,7 @@ class DonorMap extends React.Component {
                         </div>
                     </div>
                     <div className="spacer"/>
+                    <div>If you are interested in the methods behind this project, check out my white paper <a href='https://github.com/rawild/ny-donors-mapped'>here</a>.</div>
                     <div className="spacer"/>
                     <div className="spacer"/>
                 </div>)
